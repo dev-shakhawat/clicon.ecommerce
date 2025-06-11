@@ -110,7 +110,7 @@ export default function HeaderBottom() {
     },
   ]
 
-  const [isCategoryOpen , setIsCategoryOpen] = useState(true);
+  const [isCategoryOpen , setIsCategoryOpen] = useState(false);
   const categoryRef = useRef(null);
 
   useEffect(() => {
@@ -125,6 +125,8 @@ export default function HeaderBottom() {
     };
     
   }, [])
+
+
 
   return (
     <div className="bg-white py-4 border-b border-[#e4e7e9] ">

@@ -1,12 +1,41 @@
+"use client"
+
 import Container from '@/components/common/Container'
 import Cart from '@/icons/Cart'
 import Favorite from '@/icons/Favorite'
 import Search from '@/icons/Search'
 import User from '@/icons/User'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import Auth from '../account/Auth'
+
+
+import CartModal from '../cart/CartModal'
 
 export default function HeaderMiddle() {
+
+  const [isAuth , setIsAuth] = useState(false)
+  const accountRef = useRef(null)
+  const [isCart , setIsCart] = useState(false)
+  const cartRef = useRef(null)
+
+
+  useEffect(() => {
+    
+    const handleClick = (e) => {
+      if (accountRef.current && !accountRef.current.contains(e.target)) {
+        setIsAuth(false)
+      }
+      if (cartRef.current && !cartRef.current.contains(e.target)) {
+        setIsCart(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => {
+      document.removeEventListener('mousedown', handleClick)
+    }
+  })
+
   return (
     <div className='border-t border-[#3f7ca3] py-5 '>
       <Container>
@@ -22,16 +51,32 @@ export default function HeaderMiddle() {
           </div>
 
           {/* ecommerce options */}
-          <div className="flex gap-6 ">
-            <button type="button" className='cursor-pointer' >
-              <Cart/>
-            </button>
-            <button type="button" className='cursor-pointer' >
-              <Favorite/>
-            </button>
-            <button type="button" className='cursor-pointer' >
-              <User/>
-            </button>
+          <div className="flex gap-6  ">
+
+            <div ref={cartRef} className="relative   ">
+              <button onClick={()=> setIsCart(prev => !prev)} type="button" className='cursor-pointer' >
+                <Cart/>
+              </button>
+
+              {/* cart modal */}
+              {isCart &&  <CartModal/>}
+            </div>
+
+            <div className="">
+              <button type="button" className='cursor-pointer' >
+                <Favorite/>
+              </button>
+            </div>
+
+            <div ref={accountRef} className="relative">
+              <button onClick={()=> setIsAuth(prev => !prev)} type="button" className='cursor-pointer' >
+                <User/>
+              </button>
+
+              {/* auth */}
+              {isAuth && <Auth/>}
+            </div>
+
           </div>
 
         </div>
