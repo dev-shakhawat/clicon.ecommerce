@@ -1,11 +1,19 @@
+
+"use client"
+
 import React from 'react'
 import Container from '../common/Container'
 import Image from 'next/image'
 import Arrow from '@/icons/Arrow'
 import Close from '@/icons/Close'
+import { usePathname } from 'next/navigation'
 
 export default function TopAdvertize() {
+
+  const pathname = usePathname()
+  
   return (
+    pathname == '/' &&
     <div className='bg-[#191C1F] py-4 relative text-white ' >
         <Container>
             <div className="flex items-center justify-between  ">

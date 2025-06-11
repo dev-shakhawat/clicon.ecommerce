@@ -1,6 +1,8 @@
 import { Public_Sans} from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/lib/StoreProvider";
+import TopAdvertize from "@/components/ui/TopAdvertize";
+import Header from "@/components/ui/header/Header";
 
 const publicSance = Public_Sans({
   variable: "--font-Public_Sans",
@@ -19,7 +21,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${publicSance.variable}  antialiased`}
       >
-        <StoreProvider>{children}</StoreProvider>
+        <TopAdvertize/>
+        <StoreProvider>
+          <Header/>
+          {children}
+          
+        </StoreProvider>
+
       </body>
     </html>
   );
