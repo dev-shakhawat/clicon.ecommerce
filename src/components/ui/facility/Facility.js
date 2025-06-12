@@ -10,10 +10,10 @@ export default function Facility() {
     <div className='pt-6'>
       <Container>
         <div className="flex justify-between ">
-          <FacilityCart title={'Fast Delivery'} text={'Delivery in 24/H'} icon={<Parcel/>}  />
-          <FacilityCart title={'24 Hours Return'} text={'100% money-back guarantee'} icon={<Return/>}  />
-          <FacilityCart title={'Secure Payment'} text={'Your money is safe'} icon={<Credit/>}  />
-          <FacilityCart title={'Support 24/7'} text={'Live contact/message'} icon={<Credit/>}  />
+          <FacilityCart title={'Fast Delivery'} text={'Delivery in 24/H'} icon={<Parcel/>}   />
+          <FacilityCart title={'24 Hours Return'} text={'100% money-back guarantee'} icon={<Return/>}   />
+          <FacilityCart title={'Secure Payment'} text={'Your money is safe'} icon={<Credit/>}   />
+          <FacilityCart title={'Support 24/7'} text={'Live contact/message'} icon={<Credit/>} border={false}  />
         </div>
       </Container>
     </div>

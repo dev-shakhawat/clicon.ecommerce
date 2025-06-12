@@ -1,4 +1,5 @@
 import Banner from "@/components/ui/banner/Banner";
+import AllCategory from "@/components/ui/Category/AllCategory";
 import Facility from "@/components/ui/facility/Facility";
 import Header from "@/components/ui/header/Header";
 import TopAdvertize from "@/components/ui/TopAdvertize";
@@ -13,6 +14,9 @@ export default function Home() {
 
       {/* facility */}
       <Facility/>
+
+      {/* all category */}
+      <AllCategory/>
 
     </>
   );
