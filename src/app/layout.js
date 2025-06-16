@@ -1,14 +1,13 @@
-import { Public_Sans} from "next/font/google";
+import { Public_Sans } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/lib/StoreProvider";
-import TopAdvertize from "@/components/ui/TopAdvertize";
-import Header from "@/components/ui/header/Header";
+import TopAdvertize from "@/components/customeUI/TopAdvertize";
+import Header from "@/components/customeUI/header/Header";
 
 const publicSance = Public_Sans({
   variable: "--font-Public_Sans",
   subsets: ["latin"],
 });
-
 
 export const metadata = {
   title: "Clicon",
@@ -18,16 +17,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${publicSance.variable}  antialiased`}
-      >
-        <TopAdvertize/>
+      <body className={`${publicSance.variable}  antialiased`}>
+        <TopAdvertize />
         <StoreProvider>
-          <Header/>
+          <Header />
           {children}
-          
         </StoreProvider>
-
       </body>
     </html>
   );

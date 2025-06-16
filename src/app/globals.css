@@ -1,8 +1,18 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
 
 
 @theme{
 
     /* font */
     --font-Public_Sans: 'Public Sans', sans-serif;
+}
+
+
+.productTabBtn{
+    @apply duration-300 ease-in-out rounded-none border-t-0 border-l-0 border-r-0 shadow-none border-b-4 font-Public_Sans font-medium p-2 text-sm leading-5 text-[#5F6C72] cursor-pointer; 
+}
+.productTabBtn[data-state=active]{
+    @apply  border-[#FA8232]   text-[#191C1F]  ; 
 }

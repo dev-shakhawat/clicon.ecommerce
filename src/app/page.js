@@ -1,24 +1,23 @@
-import Banner from "@/components/ui/banner/Banner";
-import AllCategory from "@/components/ui/Category/AllCategory";
-import Facility from "@/components/ui/facility/Facility";
-import FeaturedProducts from "@/components/ui/featuredProducts/FeaturedProducts";
+import Banner from "@/components/customeUI/banner/Banner";
+import AllCategory from "@/components/customeUI/category/AllCategory";
+import Facility from "@/components/customeUI/facility/Facility";
+import FeaturedProduct from "@/components/customeUI/featuredProduct/FeaturedProduct";
 
 export default function Home() {
   return (
     <>
-
       {/* Banner */}
-      <Banner/>
+      <Banner />
 
       {/* facility */}
-      <Facility/>
+      <Facility />
 
       {/* all category */}
-      <AllCategory/>
+      <AllCategory />
 
       {/* featured products component  */}
-      <FeaturedProducts/>
-
+      <FeaturedProduct/>
+      
     </>
   );
 }

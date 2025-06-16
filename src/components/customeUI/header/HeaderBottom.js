@@ -13,7 +13,7 @@ import Info from "@/icons/Info";
 import Location from "@/icons/Location";
 import Support from "@/icons/Support";
 import Link from "next/link";
-import Category from "../category/Category";
+import CategoryListForHeader from "../category/CategoryListForHeader";
 
 export default function HeaderBottom() {
 
@@ -144,7 +144,7 @@ export default function HeaderBottom() {
             </button>
 
             {/* alll category dropdown */}
-            { isCategoryOpen &&  <Category categoryList={categoryList} className={`top-15 left-0`}  />}
+            { isCategoryOpen &&  <CategoryListForHeader categoryList={categoryList} className={`top-15 left-0`}  />}
           </div>
           
 

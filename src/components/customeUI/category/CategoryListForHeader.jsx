@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ArowDropdown from '@/icons/ArowDropdown'
 import Link from 'next/link'
 
-export default function Category({className , categoryList}) {
+export default function CategoryListForHeader({className , categoryList}) {
 
     const [isSubcategoryOpen , setIsSubcategoryOpen] = useState(0)
   return (
