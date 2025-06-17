@@ -6,7 +6,7 @@ import Favorite from '@/icons/Favorite'
 import Search from '@/icons/Search'
 import User from '@/icons/User'
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Auth from '../account/Auth'
 
 
@@ -37,7 +37,7 @@ export default function HeaderMiddle() {
   })
 
   return (
-    <div className='border-t border-[#3f7ca3] py-5 '>
+    <div className='border-t border-[#3f7ca3] py-5  '>
       <Container>
         <div className="flex items-center justify-between  ">
 
