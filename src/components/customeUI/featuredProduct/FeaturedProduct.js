@@ -1,71 +1,232 @@
 "use client";
 import Container from "@/components/common/Container";
-import React, { useState } from "react";
-import LeftAd from "./LeftAd";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Flex from "@/components/common/Flex";
+import Product from "@/components/common/Product";
+import Image from "next/image";
 import Link from "next/link";
-import Arrow from "@/icons/Arrow";
-import ProductCart from "@/components/common/ProductCart";
+import { useState } from "react";
 
-export default function FeaturedProduct() {
+const FeaturedProducts = () => {
+  const tab_items = [
+    {
+      id: 1,
+      name: "All Product",
+    },
+    {
+      id: 2,
+      name: "Smart Phone",
+    },
+    {
+      id: 3,
+      name: "Laptop",
+    },
+    {
+      id: 4,
+      name: "Headphone",
+    },
+  ];
 
+  const proudcts = [
+    {
+      id: 1,
+      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      price: 109.95,
+      description:
+        "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      category: "Smart Phone",
+      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      rating: {
+        rate: 3.9,
+        count: 120,
+      },
+    },
+    {
+      id: 2,
+      title: "Mens Casual Premium Slim Fit T-Shirts ",
+      price: 22.3,
+      description:
+        "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      category: "Smart Phone",
+      image:
+        "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      rating: {
+        rate: 4.1,
+        count: 259,
+      },
+    },
+    {
+      id: 3,
+      title: "Mens Cotton Jacket",
+      price: 55.99,
+      description:
+        "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+      category: "Laptop",
+      image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      rating: {
+        rate: 4.7,
+        count: 500,
+      },
+    },
+    {
+      id: 4,
+      title: "Mens Casual Slim Fit",
+      price: 15.99,
+      description:
+        "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+      category: "men's clothing",
+      image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+      rating: {
+        rate: 2.1,
+        count: 430,
+      },
+    },
+    {
+      id: 5,
+      title:
+        "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+      price: 695,
+      description:
+        "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+      category: "jewelery",
+      image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+      rating: {
+        rate: 4.6,
+        count: 400,
+      },
+    },
+    {
+      id: 6,
+      title: "Solid Gold Petite Micropave ",
+      price: 168,
+      description:
+        "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      category: "jewelery",
+      image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+      rating: {
+        rate: 3.9,
+        count: 70,
+      },
+    },
+    {
+      id: 7,
+      title: "White Gold Plated Princess",
+      price: 9.99,
+      description:
+        "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
+      category: "jewelery",
+      image: "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
+      rating: {
+        rate: 3,
+        count: 400,
+      },
+    },
+    {
+      id: 8,
+      title: "Pierced Owl Rose Gold Plated Stainless Steel Double",
+      price: 10.99,
+      description:
+        "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
+      category: "jewelery",
+      image: "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
+      rating: {
+        rate: 1.9,
+        count: 100,
+      },
+    },
+    {
+      id: 9,
+      title: "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
+      price: 64,
+      description:
+        "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
+      category: "electronics",
+      image: "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+      rating: {
+        rate: 3.3,
+        count: 203,
+      },
+    },
+    {
+      id: 10,
+      title: "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+      price: 109,
+      description:
+        "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
+      category: "electronics",
+      image: "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+      rating: {
+        rate: 2.9,
+        count: 470,
+      },
+    },
+  ];
 
-  const [activeTab, setActiveTab] = useState("product");
-  console.log(activeTab);
-  
+  const [activeTab, setActiveTab] = useState("All Product");
+
+  const handleTabactive = (name) => {
+    setActiveTab(name);
+  };
+
+  const filterProduct =
+    activeTab == "All Product"
+      ? proudcts
+      : proudcts.filter((item) => item.category == activeTab);
+
   return (
-    <Container>
-      <div className="flex gap-6">
-        <LeftAd />
+    <section>
+      <Container>
+        <Flex className=" gap-6">
+          <div>
+            <Image
+              src={"/images/ProductBanner.png"}
+              alt="banner"
+              width={320}
+              height={716}
+              className={`w-full `}
+            />
+          </div>
 
-        {/* right - products tabs */}
-        <div className="relative w-full">
+          <div className="w-full">
+            <Flex className="justify-between">
+              <h2 className=" text-2xl font-semibold font-Public_Sans leading-6 text-gray-900">
+                Featured Products{" "}
+              </h2>
 
-
-          {/* title */}
-          <h2 className="font-public_sans font-semibold text-[24px] leading-[32px] text-[#191C1F] absolute top-1 left-0  ">Featured Products</h2>
-
-          {/* all product link */}
-          <Link href={`/shop`} className="absolute top-1 right-0 flex items-center gap-2   ">
-            <span className=" font-Public_Sans font-semibold text-sm leading-5 text-[#FA8232]  ">Browse All Product</span>
-            <Arrow className={` w-5 h-5 text-[#FA8232]  `}  />
-          </Link>
-
-          {/* products tabs */}
-          <Tabs defaultValue="account" className="">
-            <TabsList className={`ml-auto mr-[170px] mb-6`}>
-              <TabsTrigger onClick={()=> setActiveTab('all')} className={`productTabBtn`} value="product">All Product</TabsTrigger>
-              <TabsTrigger onClick={()=> setActiveTab('smartPhone')} className={`productTabBtn`} value="phone">Smart Phone</TabsTrigger>
-              <TabsTrigger onClick={()=> setActiveTab('laptop')} className={`productTabBtn`} value="laptop">Laptop</TabsTrigger>
-              <TabsTrigger onClick={()=> setActiveTab('headPhone')} className={`productTabBtn`} value="headphone">Headphone</TabsTrigger>
-              <TabsTrigger onClick={()=> setActiveTab('tv')} className={`productTabBtn`} value="tv">TV</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="product" className={`grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 grid-rows-2 gap-4  `} >
-              <ProductCart productThumbnail={`/images/productimage.png`} price={1500} topAd={true} rating={5} totalrating={100}  title={`Canon EOS 1500D DSLR Camera Body+ 18-55 mm`}  />
-              <ProductCart productThumbnail={`/images/productimage.png`} price={1500} topAd={true} rating={5} totalrating={100}  title={`Canon EOS 1500D DSLR Camera Body+ 18-55 mm`}  />
-              <ProductCart productThumbnail={`/images/productimage.png`} price={1500} topAd={true} rating={5} totalrating={100}  title={`Canon EOS 1500D DSLR Camera Body+ 18-55 mm`}  />
-              <ProductCart productThumbnail={`/images/productimage.png`} price={1500} topAd={true} rating={5} totalrating={100}  title={`Canon EOS 1500D DSLR Camera Body+ 18-55 mm`}  />
-              <ProductCart productThumbnail={`/images/productimage.png`} price={1500} topAd={true} rating={5} totalrating={100}  title={`Canon EOS 1500D DSLR Camera Body+ 18-55 mm`}  />
-              <ProductCart productThumbnail={`/images/productimage.png`} price={1500} topAd={true} rating={5} totalrating={100}  title={`Canon EOS 1500D DSLR Camera Body+ 18-55 mm`}  />
-              <ProductCart productThumbnail={`/images/productimage.png`} price={1500} topAd={true} rating={5} totalrating={100}  title={`Canon EOS 1500D DSLR Camera Body+ 18-55 mm`}  />
-              <ProductCart productThumbnail={`/images/productimage.png`} price={1500} topAd={true} rating={5} totalrating={100}  title={`Canon EOS 1500D DSLR Camera Body+ 18-55 mm`}  />
-            </TabsContent>
-            <TabsContent value="phone">
-            phone
-            </TabsContent>
-            <TabsContent value="laptop">
-            laptop
-            </TabsContent>
-            <TabsContent value="headphone">
-            headphone
-            </TabsContent>
-            <TabsContent value="tv">
-            tv
-            </TabsContent>
-          </Tabs>
-        </div>
-      </div>
-    </Container>
+              <ul className="flex    ">
+                {tab_items.map((item, index) => (
+                  <li
+                    onClick={() => handleTabactive(item.name)}
+                    key={index}
+                    className={`py-2 px-4 font-public_sans font-normal text-sm leading-5 text-[#77878F] ${
+                      activeTab == item.name &&
+                      " border-b-4 border-[#ffc62b] bg-[#f2f4f5] text-black"
+                    } hover:bg-[#f2f4f5] hover:text-[#191C1F]    `}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+                <li className="py-2 px-4 font-public_sans font-normal text-sm leading-5 text-[#da941a] hover:bg-[#f2f4f5] hover:text-[#191C1F]  ">
+                  <Link href={"/shop"}>Browse All Product</Link>
+                </li>
+              </ul>
+            </Flex>
+            {/* featured products */}
+            <div className="mt-6">
+              <div className="grid grid-cols-4 gap-4">
+                {filterProduct.length == 0 ? (
+                  <div className="text-center col-span-4">No Product Found</div>
+                ) : (
+                  filterProduct?.map((item, index) => (
+                    <Product id={index} product={item} />
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        </Flex>
+      </Container>
+    </section>
   );
-}
+};
+
+export default FeaturedProducts;
