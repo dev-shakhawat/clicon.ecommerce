@@ -10,7 +10,7 @@ export default function OverviewCart({title , price , image}) {
 
         {/* product details */}
         <div className="ml-4  ">
-          <h3 className=" font-Public_Sans font-normal text-sm leading-5 text-[#191C1F] max-w-[200px]  ">{title}</h3>
+          <h3 className="OverViewLineClamp font-Public_Sans font-normal text-sm leading-5 text-[#191C1F] max-w-[200px]  ">{title}</h3>
           <p className="mt-2 font-Public_Sans font-normal text-sm leading-5 text-[#191C1F] "><span className='text-[#2DA5F3] font-medium'>${price}</span></p>
         </div>
     </div>

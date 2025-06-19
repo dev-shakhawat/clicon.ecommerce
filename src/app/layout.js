@@ -2,7 +2,8 @@ import { Public_Sans } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/lib/StoreProvider";
 import TopAdvertize from "@/components/customeUI/TopAdvertize";
-import Header from "@/components/customeUI/header/Header";
+import Header from "@/components/common/header/Header";
+import Footer from "@/components/common/footer/Footer";
 
 const publicSance = Public_Sans({
   variable: "--font-Public_Sans",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <StoreProvider>
           <Header />
           {children}
+          <Footer/>
         </StoreProvider>
       </body>
     </html>

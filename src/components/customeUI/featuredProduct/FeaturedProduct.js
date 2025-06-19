@@ -192,7 +192,7 @@ const FeaturedProducts = () => {
                   <div className="text-center col-span-4">No Product Found</div>
                 ) : (
                   filterProduct?.map((item, index) => (
-                    <Product id={index} product={item} />
+                    <Product key={index} id={index} product={item} />
                   ))
                 )}
               </div>

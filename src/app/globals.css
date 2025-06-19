@@ -16,3 +16,17 @@
 .productTabBtn[data-state=active]{
     @apply  border-[#FA8232]   text-[#191C1F]  ; 
 }
+
+.OverViewLineClamp {
+    @apply overflow-hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .footLinks{
+    @apply h-[32px] font-Public_Sans font-medium text-sm leading-5 text-[#929FA5]  hover:text-white hover:ml-6 duration-300 relative after:content-[''] after:w-[24px] after:h-[2px] after:bg-[#EBC80C] after:absolute after:top-[10px]  after:-left-[30px]
+  }
+  .foottags{
+    @apply py-1.5 px-3 border border-[#303639] rounded-[2px] font-Public_Sans font-medium text-sm leading-5 text-white cursor-pointer hover:bg-[#303639] hover:border-white duration-300  
+  }
