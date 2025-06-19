@@ -54,8 +54,8 @@ export default function HeaderMiddle() {
           <div className="flex gap-6  ">
 
             <div ref={cartRef} className="relative   ">
-              <button onClick={()=> setIsCart(prev => !prev)} type="button" className='cursor-pointer' >
-                <Cart/>
+              <button onClick={()=> setIsCart(prev => !prev)} type="button" className='cursor-pointer text-white ' >
+                <Cart className={`w-9 h-9 `}/>
               </button>
 
               {/* cart modal */}
@@ -63,8 +63,8 @@ export default function HeaderMiddle() {
             </div>
 
             <div className="">
-              <button type="button" className='cursor-pointer' >
-                <Favorite/>
+              <button type="button" className='cursor-pointer text-white ' >
+                <Favorite className={`w-8 h-8`}/>
               </button>
             </div>
 
