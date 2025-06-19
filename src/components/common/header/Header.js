@@ -10,7 +10,7 @@ export default function Header() {
   useEffect(() => {
 
     const handleCheckScroll = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 250) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
@@ -26,8 +26,8 @@ export default function Header() {
 
   return (
     <div
-      className={`bg-[#1B6392] ${
-        isSticky && "fixed top-0 left-0 w-full z-50"
+      className={`bg-[#1B6392]  ${
+        isSticky && "fixed top-0 left-0 w-full z-50 animate-header "
       } `}
     >
       <HeaderTop />

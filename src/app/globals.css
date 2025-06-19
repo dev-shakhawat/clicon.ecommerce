@@ -7,7 +7,20 @@
 
     /* font */
     --font-Public_Sans: 'Public Sans', sans-serif;
+
+
+    /* animation */
+    --animate-header: header 1s ease-in-out;
+    @keyframes header {
+      0%{
+        top: -20%;
+      }
+      100% {
+        top: 0%;
+      }
+    }
 }
+
 
 
 .productTabBtn{
