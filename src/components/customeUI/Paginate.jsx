@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ReactPaginate from 'react-paginate';
 import Product from "../common/Product";
+import Arrow from "@/icons/Arrow";
 
 const Paginate = ({ itemsPerPage }) => {
   const items  = [
@@ -435,7 +436,7 @@ const Paginate = ({ itemsPerPage }) => {
 
   function Items({ currentItems }) {
     return (
-      <div className=" grid grid-cols-3 gap-4 ">
+      <div className=" grid grid-cols-4 gap-4 ">
         {currentItems &&
           currentItems.map((item, index) => (
     
@@ -449,15 +450,14 @@ const Paginate = ({ itemsPerPage }) => {
   const [itemOffset, setItemOffset] = useState(0);
 
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  
   const currentItems = items.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(items.length / itemsPerPage);
+  console.log(pageCount);
+  
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
   return (
@@ -465,17 +465,17 @@ const Paginate = ({ itemsPerPage }) => {
       <Items currentItems={currentItems} />
       <ReactPaginate
         breakLabel="..."
-        nextLabel=">"
+        nextLabel= {<Arrow className={`w-6 h-6 text-[#FA8232] `}/>}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="<"
+        pageCount={pageCount <= 9 ? `0${pageCount}` : pageCount}
+        previousLabel={<Arrow className={`w-6 h-6 text-[#FA8232] rotate-180 `}/>}
         renderOnZeroPageCount={null}
-         className="flex gap-5 items-center my-10 "
-         pageClassName=" text-black border border-gray-800 w-[40px] h-[40px] flex items-center justify-center rounded-full "
-         previousClassName = " text-black border border-gray-800 w-[40px] h-[40px] flex items-center justify-center rounded-full "
-         nextClassName = " text-black border border-gray-800 w-[40px] h-[40px] flex items-center justify-center rounded-full "
-         activeClassName = "  bg-[#FA8232] text-white border !border-[#FA8232] w-[40px] h-[40px] flex items-center justify-center rounded-full "
+         className="flex gap-5 items-center my-10 justify-center "
+         pageClassName="font-Public_Sans font-semibold text-sm leading-5  cursor-pointer text-black border border-gray-800 w-[40px] h-[40px] flex items-center justify-center rounded-full "
+         previousClassName = " border-[1.5px] border-[#FA8232]  w-[40px] h-[40px] flex items-center justify-center rounded-full "
+         nextClassName = " border-[1.5px] border-[#FA8232] w-[40px] h-[40px] flex items-center justify-center rounded-full "
+         activeClassName = "  bg-[#FA8232] text-white font-Public_Sans font-semibold text-sm leading-5  border  !border-[#FA8232] w-[40px] h-[40px] flex items-center justify-center rounded-full "
   
       />
     </>

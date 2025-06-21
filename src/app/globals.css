@@ -22,6 +22,11 @@
 }
 
 
+/* common css */
+::-webkit-scrollbar {
+  display: none
+}
+
 
 .productTabBtn{
     @apply duration-300 ease-in-out rounded-none border-t-0 border-l-0 border-r-0 shadow-none border-b-4 font-Public_Sans font-medium p-2 text-sm leading-5 text-[#5F6C72] cursor-pointer; 
@@ -42,4 +47,8 @@
   }
   .foottags{
     @apply py-1.5 px-3 border border-[#303639] rounded-[2px] font-Public_Sans font-medium text-sm leading-5 text-white cursor-pointer hover:bg-[#303639] hover:border-white duration-300  
+  }
+
+  .filterHead{
+    @apply font-Public_Sans font-medium text-base leading-6 text-[#191C1F] uppercase
   }

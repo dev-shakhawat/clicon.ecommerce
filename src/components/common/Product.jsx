@@ -15,7 +15,7 @@ const Product = ({ product, id }) => {
           alt="product"
           width={202}
           height={172}
-          className=" w-full h-[172px] object-contain "
+          className=" w-auto h-[172px]  "
         />
         {/* overlay  */}
         <div className="absolute top-0 left-0 w-full h-full bg-[#000000]/30 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out  flex justify-center items-center">
@@ -61,7 +61,7 @@ const Product = ({ product, id }) => {
         </li>
         <li>(123)</li>
       </ul>
-      <h4 className="text-sm leading-5 font-bold text-[#191C1F] mt-2 ">
+      <h4 className="text-sm leading-5 font-bold text-[#191C1F] mt-2 OverViewLineClamp">
         {product.title}
       </h4>
       <h3 className="text-md leading-5 font-bold text-[#2DA5F3] mt-2 ">
