@@ -4,7 +4,6 @@ import Favorite from "@/icons/Favorite";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 const Product = ({ product, id }) => {
-  console.log(product);
   
   return (
     <div

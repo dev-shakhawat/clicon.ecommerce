@@ -7,6 +7,8 @@ import PopularTags from "@/components/customeUI/popularTags/PopularTags";
 import PriceRange from "@/components/customeUI/priceRange/PriceRange";
 import SortBy from "@/components/customeUI/sortBy/SortBy";
 import Search from "@/icons/Search"
+import Image from "next/image";
+import Link from "next/link";
 export default function page() {
   return (
     <main>
@@ -49,6 +51,14 @@ export default function page() {
               <PopularTags/>
             </div>
             <hr className="my-6 text-[#e4e7e9] " />
+
+
+            {/* Popular Tag */}
+            <div className="">
+              <Link href="">
+              <Image src={`/images/categoryad.png`} alt="banner" width={312} height={300} className={`w-full mt-6 `} />
+              </Link>
+            </div>
 
              
 
