@@ -1,12 +1,19 @@
 import Container from '@/components/common/Container'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 
-export default function Banner() {
+export default async function Banner() {
+  // Fetch categories from an API
+  const res =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/banner/getbannerone`)
+  const data = await res.json()
+
+ 
   return (
   <Container>
-    <Link href={`#`}><Image src={`/images/banner.png`} alt="banner" width={1920} height={400} className={`w-full mt-6 `} /></Link>
+    {data.data.map((item, index) => (
+      <Link href={`/${item.href}`}><Image src={item.image} alt="banner" width={1920} height={400} className={`w-full mt-6 `} /></Link>
+
+    ))}
   </Container>
   )
 }

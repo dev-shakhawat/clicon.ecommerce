@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Auth from "../../customeUI/account/Auth";
 
+import Link from "next/link";
 import CartModal from "../../customeUI/cart/CartModal";
 
 export default function HeaderMiddle() {
@@ -37,6 +38,8 @@ export default function HeaderMiddle() {
       <Container>
         <div className="flex items-center justify-between  ">
           {/* logo */}
+          <Link href="/" className="cursor-pointer">
+
           <Image
             src="/images/logo.png"
             alt="logo"
@@ -45,6 +48,7 @@ export default function HeaderMiddle() {
             height={48}
             className="w-[177px] h-[48px]  object-cover"
           />
+          </Link>
 
           {/* search Box */}
           <div className="relative bg-[#FFFFFF] lg:min-w-[646px] h-[48px] rounded-[2px]   ">

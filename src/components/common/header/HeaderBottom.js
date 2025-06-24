@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // components
 import Container from "@/components/common/Container";
@@ -11,102 +11,83 @@ import Compare from "@/icons/Compare";
 import Info from "@/icons/Info";
 import Location from "@/icons/Location";
 import Support from "@/icons/Support";
+import axios from "axios";
 import Link from "next/link";
 import CategoryListForHeader from "../../customeUI/category/CategoryListForHeader";
 
 export default function HeaderBottom() {
-  const categoryList = [
-    {
-      id: 1,
-      name: "Computer & Laptop",
-    },
-    {
-      id: 2,
-      name: "Computer Accessories",
-    },
-    {
-      id: 3,
-      name: "SmartPhone",
-      subCategory: [
-        {
-          id: 31,
-          name: "All",
-        },
-        {
-          id: 32,
-          name: "iPhone",
-        },
-        {
-          id: 33,
-          name: "Sangung",
-        },
-        {
-          id: 34,
-          name: "Realme",
-        },
-        {
-          id: 35,
-          name: "Xiaomi",
-        },
-        {
-          id: 36,
-          name: "Oppo",
-        },
-        {
-          id: 37,
-          name: "Vivo",
-        },
-        {
-          id: 38,
-          name: "OnePlus",
-        },
-        {
-          id: 39,
-          name: "Huawei",
-        },
-        {
-          id: 40,
-          name: "Infinix",
-        },
-        {
-          id: 41,
-          name: "Techno",
-        },
-      ],
-    },
-    {
-      id: 4,
-      name: "Headphone",
-    },
-    {
-      id: 5,
-      name: "Mobile Accessories",
-    },
-    {
-      id: 6,
-      name: "Gaming Console",
-    },
-    {
-      id: 7,
-      name: "Camera & Photo",
-    },
-    {
-      id: 8,
-      name: "TV & Homes Appliances",
-    },
-    {
-      id: 9,
-      name: "Watchs & Accessories",
-    },
-    {
-      id: 10,
-      name: "GPS & Navigation",
-    },
-    {
-      id: 11,
-      name: "Warable Technology",
-    },
-  ];
+  const [categoryList, setCategoryList]=useState([])
+  // const categoryList = [
+  //   {
+  //     id: 1,
+  //     name: "Computer & Laptop",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Computer Accessories",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "SmartPhone",
+  //     subCategory: [
+  //       {
+  //         id: 31,
+  //         name: "All",
+  //       },
+  //       {
+  //         id: 32,
+  //         name: "iPhone",
+  //       },
+  //       {
+  //         id: 33,
+  //         name: "Sangung",
+  //       },
+  //       {
+  //         id: 34,
+  //         name: "Realme",
+  //       },
+  //       {
+  //         id: 35,
+  //         name: "Xiaomi",
+  //       },
+  //       {
+  //         id: 36,
+  //         name: "Oppo",
+  //       },
+  //       {
+  //         id: 37,
+  //         name: "Vivo",
+  //       },
+  //       {
+  //         id: 38,
+  //         name: "OnePlus",
+  //       },
+  //       {
+  //         id: 39,
+  //         name: "Huawei",
+  //       },
+  //       {
+  //         id: 40,
+  //         name: "Infinix",
+  //       },
+  //       {
+  //         id: 41,
+  //         name: "Techno",
+  //       },
+  //     ],
+  //   },
+  
+  // ];
+  
+  // Fetch all category list from API
+  function getAllCategoryList() {
+   axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/category/getcategorys`).then((res)=>{
+   setCategoryList(res.data.data);
+   })
+  }
+  useEffect(()=>{
+    getAllCategoryList()
+  },[])
 
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const categoryRef = useRef(null);
