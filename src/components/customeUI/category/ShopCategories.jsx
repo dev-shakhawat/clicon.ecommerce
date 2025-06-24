@@ -1,10 +1,14 @@
 "use client";
 
+import { currentCat } from "@/lib/slices/productSlice";
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function ShopCategories() {
+
   const [categories, setCategories] = useState([]);
   const [activeCat, setActiveCat] = useState("");
+  const dispatch = useDispatch();
 
   // fetch categories
   useEffect(() => {
@@ -12,9 +16,11 @@ export default function ShopCategories() {
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
-
-console.log(activeCat);
-
+   
+   
+   useEffect(() => {
+    dispatch(currentCat(activeCat))
+   }, [activeCat]);
   
 
 

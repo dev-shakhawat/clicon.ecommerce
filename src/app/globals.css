@@ -48,6 +48,9 @@
   .foottags{
     @apply py-1.5 px-3 border border-[#303639] rounded-[2px] font-Public_Sans font-medium text-sm leading-5 text-white cursor-pointer hover:bg-[#303639] hover:border-white duration-300  
   }
+  .popularTags{
+    @apply py-1.5 px-3 border border-[#e4e7e9] rounded-[2px] font-Public_Sans font-medium text-sm leading-5 text-[#191C1F] hover:text-[#FA8232] cursor-pointer hover:bg-[#fdf3eb] hover:border-[#FA8232] duration-300  
+  }
 
   .filterHead{
     @apply font-Public_Sans font-medium text-base leading-6 text-[#191C1F] uppercase

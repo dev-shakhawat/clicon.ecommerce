@@ -4,14 +4,16 @@ import Favorite from "@/icons/Favorite";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 const Product = ({ product, id }) => {
+  console.log(product);
+  
   return (
     <div
       key={id}
-      className=" relative font-Public_Sans border border-[#e4e7e9] hover:shadow-lg p-4"
+      className=" relative font-Public_Sans border border-[#e4e7e9] hover:shadow-lg p-4 cursor-pointer "
     >
       <div className="relative group">
         <Image
-          src={product.image}
+          src={product?.thumbnail}
           alt="product"
           width={202}
           height={172}

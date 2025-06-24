@@ -26,8 +26,8 @@ export default function Header() {
 
   return (
     <div
-      className={`bg-[#1B6392] h-auto overflow-hidden  w-full z-50 ${
-        isSticky && "fixed top-0 left-0  animate-header "
+      className={`bg-[#1B6392] h-auto  w-full ${
+        isSticky && "fixed top-0 left-0 animate-header z-10 "
       } `}
     >
       <HeaderTop />

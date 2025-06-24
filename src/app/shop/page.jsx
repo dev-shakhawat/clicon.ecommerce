@@ -2,6 +2,8 @@ import Breadcrumb from "@/components/common/Breadcrumb";
 import Container from "@/components/common/Container";
 import ShopCategories from "@/components/customeUI/category/ShopCategories";
 import Paginate from "@/components/customeUI/Paginate";
+import PopularBrand from "@/components/customeUI/popularBrand/PopularBrand";
+import PopularTags from "@/components/customeUI/popularTags/PopularTags";
 import PriceRange from "@/components/customeUI/priceRange/PriceRange";
 import SortBy from "@/components/customeUI/sortBy/SortBy";
 import Search from "@/icons/Search"
@@ -13,7 +15,7 @@ export default function page() {
         <div className="flex justify-between gap-6 mt-10 pb-[72px] ">
 
           {/* all filters */}
-          <div className="lg:min-w-[312px] h-auto ">
+          <div className="lg:min-w-[300px] max-w-[312px] h-auto ">
 
             {/* categories */}
             <div className="">
@@ -31,6 +33,25 @@ export default function page() {
             </div>
 
             <hr className="my-6 text-[#e4e7e9] " />
+
+
+            {/* popular Brands */}
+            <div className="">
+              <h2 className="filterHead">popular Brands</h2>
+              <PopularBrand/>
+            </div>
+            <hr className="my-6 text-[#e4e7e9] " />
+
+
+            {/* Popular Tag */}
+            <div className="">
+              <h2 className="filterHead">Popular Tag</h2>
+              <PopularTags/>
+            </div>
+            <hr className="my-6 text-[#e4e7e9] " />
+
+             
+
 
 
 
@@ -64,7 +85,7 @@ export default function page() {
               </div>
             </div>
 
-            <Paginate itemsPerPage={12}/>
+            <Paginate itemsPerPage={24}/>
           </div>
         </div>
       </Container>
