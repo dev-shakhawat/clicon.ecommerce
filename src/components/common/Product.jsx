@@ -3,16 +3,17 @@ import Eye from "@/icons/Eye";
 import Favorite from "@/icons/Favorite";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-const Product = ({ product, id }) => {
+const Product = ({ product, id , onClick}) => {
   
   return (
     <div
+      onClick={onClick}
       key={id}
       className=" relative font-Public_Sans border border-[#e4e7e9] hover:shadow-lg p-4 cursor-pointer "
     >
       <div className="relative group">
         <Image
-          src={product?.thumbnail}
+          src={product?.image}
           alt="product"
           width={202}
           height={172}
@@ -63,7 +64,7 @@ const Product = ({ product, id }) => {
         <li>(123)</li>
       </ul>
       <h4 className="text-sm leading-5 font-bold text-[#191C1F] mt-2 OverViewLineClamp">
-        {product.title}
+        {product.name}
       </h4>
       <h3 className="text-md leading-5 font-bold text-[#2DA5F3] mt-2 ">
         $ {product.price}

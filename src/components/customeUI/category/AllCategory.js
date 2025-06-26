@@ -13,8 +13,15 @@ import {
 } from "@/components/ui/carousel";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { currentCat } from "@/lib/slices/productSlice";
+import { useRouter } from "next/navigation";
 
 export default function AllCategory() {
+
+  const dispatch = useDispatch(); 
+  const router = useRouter()
+
   const [categoryList, setCategoryList] = useState([]);
   function getAllCategoryList() {
     axios
@@ -26,6 +33,12 @@ export default function AllCategory() {
   useEffect(() => {
     getAllCategoryList();
   }, []);
+
+  const handleCategoryView = (category , slug)=>{
+    dispatch(currentCat(category))
+    router.push(`/shop`)
+  }
+  
 
   return (
     <div className="py-10">
@@ -47,7 +60,8 @@ export default function AllCategory() {
                   <CategoryCart
                     thumbnail={item.image}
                     category={item.name}
-                    slug ={item.slug} // Assuming you want to use slug for linking
+                    slug ={item.slug} 
+                    onClick={() => handleCategoryView(item.name , item.slug)}
                   />
                 </CarouselItem>
               ))}

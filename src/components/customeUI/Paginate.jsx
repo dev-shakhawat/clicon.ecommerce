@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../common/Product";
 import Arrow from "@/icons/Arrow";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useRouter } from 'next/navigation'
+import { currentProduct } from "@/lib/slices/productSlice";
 
 const Paginate = ({ itemsPerPage }) => {
 
@@ -13,15 +16,30 @@ const Paginate = ({ itemsPerPage }) => {
   const currentItems = items.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(items.length / itemsPerPage);
   const cateNow = useSelector((state) => state.product.currentCatagory)
+  const router = useRouter()
+  const dispatch = useDispatch();
   
 
+
+  function getAllCategoryList() {
+    
+
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/category/getcategorys`)
+      .then((res) => {
+        setItems(res.data.data);
+      });
+  }
   useEffect(() => {
+    getAllCategoryList();
+  }, []);
 
-    fetch(`https://dummyjson.com/products/${cateNow ? `category/${cateNow}` : ""}`)
-      .then((res) => res.json())
-      .then((data) => setItems(data.products));
-
-  }, [cateNow]);
+  const handleproductview = (product) => {
+    router.push(`/shop/${product._id}`)
+    dispatch(currentProduct(product))
+    
+  }
+  
   
 
 
@@ -30,7 +48,7 @@ const Paginate = ({ itemsPerPage }) => {
       <div className=" grid grid-cols-4 gap-4 ">
         {currentItems &&
           currentItems.map((item, index) => (
-            <Product key={index} id={index} product={item} />
+            <Product key={index} id={index} product={item} onClick={() => handleproductview(item)} />
           ))}
       </div>
     );
