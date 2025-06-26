@@ -4,11 +4,13 @@ import { usePathname } from "next/navigation";
 import Container from "./Container";
 
 // icons
-import { FaAngleRight } from "react-icons/fa6";
 import Home from "@/icons/Home";
+import { FaAngleRight } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
 const Breadcrumb = () => {
+
+
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter((segment) => segment !== "");
   const catenow = useSelector((state) => state.product.currentCatagory)

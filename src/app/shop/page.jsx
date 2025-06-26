@@ -10,6 +10,8 @@ import Search from "@/icons/Search"
 import Image from "next/image";
 import Link from "next/link";
 export default function page() {
+
+  
   return (
     <main>
       <Breadcrumb />

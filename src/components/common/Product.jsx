@@ -13,7 +13,7 @@ const Product = ({ product, id , onClick}) => {
     >
       <div className="relative group">
         <Image
-          src={product?.image}
+          src={product?.thumbnail||product.image}
           alt="product"
           width={202}
           height={172}

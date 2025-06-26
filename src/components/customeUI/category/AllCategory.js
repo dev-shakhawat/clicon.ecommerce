@@ -11,16 +11,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { currentCat } from "@/lib/slices/productSlice";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { currentCat } from "@/lib/slices/productSlice";
-import { useRouter } from "next/navigation";
 
 export default function AllCategory() {
-
-  const dispatch = useDispatch(); 
-  const router = useRouter()
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const [categoryList, setCategoryList] = useState([]);
   function getAllCategoryList() {
@@ -34,11 +33,10 @@ export default function AllCategory() {
     getAllCategoryList();
   }, []);
 
-  const handleCategoryView = (category , slug)=>{
-    dispatch(currentCat(category))
-    router.push(`/shop`)
-  }
-  
+  const handleCategoryView = (category, slug) => {
+    dispatch(currentCat(category));
+    router.push(`/shop`);
+  };
 
   return (
     <div className="py-10">
@@ -50,26 +48,20 @@ export default function AllCategory() {
 
         <div className=" w-[1320px] mt-5">
           <Carousel>
-            {categoryList.length > 5 && 
-
-            <CarouselPrevious />
-            }
+            {categoryList.length > 5 && <CarouselPrevious />}
             <CarouselContent className={`-ml-2`}>
               {categoryList?.map((item, index) => (
                 <CarouselItem className="basis-1/5">
                   <CategoryCart
                     thumbnail={item.image}
                     category={item.name}
-                    slug ={item.slug} 
-                    onClick={() => handleCategoryView(item.name , item.slug)}
+                    slug={item.slug}
+                    onClick={() => handleCategoryView(item.name, item.slug)}
                   />
                 </CarouselItem>
               ))}
             </CarouselContent>
-              {categoryList.length > 5 && 
-
-            <CarouselNext />
-              }
+            {categoryList.length > 5 && <CarouselNext />}
           </Carousel>
         </div>
       </Container>
