@@ -138,7 +138,7 @@ export default function HeaderBottom() {
           <ul className="flex items-center gap-6 ml-6 ">
             <li>
               <Link
-                href={"#"}
+                href={"/track-order"}
                 className=" flex items-center gap-[6px] font-Public_Sans font-normal text-sm leading-5 text-[#5F6C72] "
               >
                 <Location />
