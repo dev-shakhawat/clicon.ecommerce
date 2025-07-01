@@ -35,7 +35,7 @@ export default function page() {
             </div>
 
             {/* button to track */}
-            <button type="button" className=' font-Public_Sans font-bold text-base leading-14 text-[#ffffff] bg-[#FA8232] py-2 px-8 flex items-center gap-4 mt-8 pb-[124px]  '>
+            <button type="button" className=' font-Public_Sans font-bold text-base leading-14 text-[#ffffff] bg-[#FA8232] py-2 px-8 flex items-center gap-4 mt-8 mb-[124px]  '>
                 <span>Track Order</span>
                 <Arrow className={`w-5 h-5  `}/>
             </button>
