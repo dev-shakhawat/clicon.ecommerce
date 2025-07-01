@@ -6,7 +6,7 @@ import PopularBrand from "@/components/customeUI/popularBrand/PopularBrand";
 import PopularTags from "@/components/customeUI/popularTags/PopularTags";
 import PriceRange from "@/components/customeUI/priceRange/PriceRange";
 import SortBy from "@/components/customeUI/sortBy/SortBy";
-import Search from "@/icons/Search"
+import Search from "@/icons/Search";
 import Image from "next/image";
 import Link from "next/link";
 export default function page() {
@@ -16,7 +16,7 @@ export default function page() {
     <main>
       <Breadcrumb />
       <Container>
-        <div className="flex justify-between gap-6 mt-10 pb-[72px] ">
+        <div className="flex  gap-6 mt-10 pb-[72px] ">
 
           {/* all filters */}
           <div className="lg:min-w-[300px] max-w-[312px] h-auto ">

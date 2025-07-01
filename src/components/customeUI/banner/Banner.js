@@ -7,6 +7,10 @@ export default async function Banner() {
   const res =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/banner/getbannerone`)
   const data = await res.json()
 
+
+
+
+  
  
   return (
   <Container>

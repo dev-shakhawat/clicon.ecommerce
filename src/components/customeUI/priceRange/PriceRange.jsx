@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import { useState } from 'react';
 
 export default function PriceRange() {
 
@@ -22,8 +22,8 @@ export default function PriceRange() {
         
         {/* price range */}
         <div className="relative">
-            <input onChange={(e)=> handleMinChange(e.target.value , 'min')} value={minval} min={20} max={10000} step={40} type="range" className="appearance-none w-full h-2 rounded-full outline-none cursor-pointer absolute top-0 left-0 z-[10]   " />
-            <input onChange={(e)=> handleMinChange(e.target.value , 'max')} value={maxval} min={20} max={10000} step={40} type="range" className="appearance-none w-full h-2 rounded-full outline-none cursor-pointer absolute top-0 left-0 z-[10]   " />
+            <input onChange={(e)=> handleMinChange(e.target.value , 'min')} value={minval} min={20} max={10000} step={40} type="range" className=" w-full h-2 rounded-full outline-none cursor-pointer absolute top-0 left-0 z-[10]   " />
+            <input onChange={(e)=> handleMinChange(e.target.value , 'max')} value={maxval} min={20} max={10000} step={40} type="range" className=" w-full h-2 rounded-full outline-none cursor-pointer absolute top-0 left-0 z-[10]   " />
         </div>
 
 
