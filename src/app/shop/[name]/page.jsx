@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Container from "@/components/common/Container";
 import Star from "@/icons/Star";
 import ProductInfoSelection from "@/components/customeUI/productDescription/ProductInfoSelection";
+import Cart from "@/icons/Cart";
 
 const page = () => {
 
@@ -23,6 +24,21 @@ const page = () => {
   }, []);
 
   const product = useSelector((state) => state.product.currentProduct)
+
+  // product quantity count
+  const [quantity , setQuantity] = useState(1)
+
+  const handlePlus = ()=>{
+    setQuantity(prev => prev + 1)
+  }
+
+  const handleMinus = ()=>{
+
+    if(quantity === 1){
+      return
+    }
+    setQuantity(prev => prev - 1)
+  }
   
   return (
     <div>
@@ -124,6 +140,27 @@ const page = () => {
                   <ProductInfoSelection title={`Size`} list={["Small", "Medium", "Large"]}/>
                   <ProductInfoSelection title={`Memory`} list={["8 GB", "16 GB", "32 GB"]}/>
                   <ProductInfoSelection title={`Storage`} list={[ "128 GB", "256 GB", "512 GB"]}/>
+                </div>
+
+
+                {/* add to cart */}
+                <div className="flex mt-9 gap-4  ">
+
+                  {/* quantity */}
+                  <div className="p-5 flex items-center gap-[37px] border border-[#e4e7e9] h-fit ">
+                    <button type="button" onClick={handleMinus} className="text-4xl cursor-pointer  " >-</button>
+                    <p className=" font-Public_Sans font-normal text-base leading-6 text-[#475156]  ">{quantity < 10 ? `0${quantity}` : quantity}</p>
+                    <button type="button" onClick={handlePlus} className="text-4xl cursor-pointer  " >+</button>
+                  </div>
+
+                  {/* add to cart */}
+                  <button type="button" className="bg-[#FA8232] py-2 flex gap-4 items-center  px-20 font-Public_Sans font-bold text-base leading-14 text-white uppercase cursor-pointer      ">
+                    <span>add to cart</span>
+                    <Cart className={`w-5 h-5`}/>
+                  </button>
+
+                  <button type="button" className=" border-2 border-[#FA8232] px-8 py-2 font-Public_Sans font-bold text-base leading-14 text-[#FA8232] uppercase cursor-pointer    ">BUY NOW</button>
+
                 </div>
                 
             </div>

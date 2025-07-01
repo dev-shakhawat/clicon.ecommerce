@@ -8,6 +8,6 @@ export const metadata = {
 export default function layout({ children }) {
   return <div>
     {children}
-    <ProductOverview/>
+    <ProductOverview className="mt-15"/>
   </div>;
 }

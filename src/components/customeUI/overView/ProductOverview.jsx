@@ -2,7 +2,7 @@ import Container from '@/components/common/Container'
 import React from 'react'
 import OverviewCart from './OverviewCart'
 
-export default function ProductOverview() {
+export default function ProductOverview({className}) {
 
     // flash sale
     const FlashSale = [
@@ -98,7 +98,7 @@ export default function ProductOverview() {
 
 
   return (
-    <div className='pb-[72px]'>
+    <div className={`${className} pb-22 `}>
         <Container>
 
             {/* product overview box */}
