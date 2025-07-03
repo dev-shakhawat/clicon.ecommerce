@@ -42,7 +42,7 @@ const Paginate = ({ itemsPerPage }) => {
   }, [cateNow, pricerange]);
 
   const handleproductview = (product) => {
-    router.push(`/shop/${product._id}`);
+    router.push(`/shop/${product.slug}`);
     dispatch(currentProduct(product));
   };
 
