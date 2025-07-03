@@ -15,23 +15,31 @@ const Paginate = ({ itemsPerPage }) => {
   const currentItems = items.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(items.length / itemsPerPage);
   const cateNow = useSelector((state) => state.product.currentCatagory);
+  const pricerange = useSelector((state) => state.product.pricerange);
   const router = useRouter();
   const dispatch = useDispatch();
 
 
 
 
+
+
+  const filterparams = new URLSearchParams({
+    category: cateNow,
+    minprice: pricerange[0],
+    maxprice: pricerange[1],
+  });
+
   function getAllCategoryList() {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/product/get-products?category=${cateNow}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/product/get-products?${filterparams}`)
       .then((res) => {
-        console.log("res", res.data.data);
         setItems(res.data.data);
       });
   }
   useEffect(() => {
     getAllCategoryList();
-  }, [cateNow]);
+  }, [cateNow, pricerange]);
 
   const handleproductview = (product) => {
     router.push(`/shop/${product._id}`);
