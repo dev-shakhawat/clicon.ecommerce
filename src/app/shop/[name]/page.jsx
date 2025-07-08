@@ -28,7 +28,7 @@ const page = () => {
 
   // product quantity count
   const [quantity, setQuantity] = useState(1);
-  const [variant, setVariant] = useState({});
+  const [variant, setVariant] = useState(null);
 
   const handlePlus = () => {
     setQuantity((prev) => prev + 1);
@@ -49,16 +49,20 @@ const page = () => {
         )
         .then((res) => {
           setProduct(res.data.data);
+          if (res.data.data.variant.length > 0) {
+            setVariant(res.data.data.variant[0]);
+          }
         });
     }
 
     getSingleProduct();
   }, []);
 
-let handleVariant = (item) => { 
-  setVariant(item);
-  console.log("Selected variant:", item);
-};
+  let handleVariant = (item) => {
+    setVariant(item);
+  };
+
+  console.log("variant", variant);
 
   return (
     <div>
@@ -68,10 +72,10 @@ let handleVariant = (item) => {
       <Container>
         <div className="flex mt-8 gap-[56px] ">
           {/* product image */}
-          <div className="w-[600px] bg-red-200   ">
+          <div className="w-[600px]    ">
             {/* product image slider */}
             {/* <Slider asNavFor={nav2} ref={slider => (sliderRef1 = slider)}> */}
-            <div className="w-[600px] h-[full] bg-red-100  ">
+            <div className="w-[600px] h-[full]   ">
               {product?.thumbnail && (
                 <img
                   src={product?.thumbnail}
@@ -124,16 +128,26 @@ let handleVariant = (item) => {
                   Sku:
                 </span>
                 <span className="font-Public_Sans font-semibold text-xl leading-7 text-[#191C1F] ml-2  ">
-                  A264671
+                  {variant?.sku || product?.sku || "N/A"}
                 </span>
               </p>
               <p className="">
                 <span className="font-Public_Sans font-normal text-sm leading-5 text-[#5F6C72] ">
                   Availability:
                 </span>
-                <span className="font-Public_Sans font-semibold text-xl leading-7 text-green-500 ml-2  ">
-                  In Stock
-                </span>
+                {!variant ? (
+                  <span className="font-Public_Sans font-semibold text-xl leading-7 text-red-500 ml-2  ">
+                    Aailable
+                  </span>
+                ) : variant?.stock > 0 ? (
+                  <span className="font-Public_Sans font-semibold text-xl leading-7 text-green-500 ml-2  ">
+                    {variant.stock} in stock
+                  </span>
+                ) : (
+                  <span className="font-Public_Sans font-semibold text-xl leading-7 text-red-500 ml-2  ">
+                    out of stock
+                  </span>
+                )}
               </p>
               <p className="">
                 <span className="font-Public_Sans font-normal text-sm leading-5 text-[#5F6C72] ">
@@ -185,7 +199,7 @@ let handleVariant = (item) => {
                 </div>
               )}
               {
-                product?.variant && (
+                product?.variant?.length > 0 && (
                   <>
                     <p className="font-Public_Sans font-normal text-sm text-[#191C1F] mb-2    ">
                       Size
@@ -217,6 +231,7 @@ let handleVariant = (item) => {
             {/* add to cart */}
             <div className="flex mt-9 gap-4  ">
               {/* quantity */}
+              {variant && variant.stock > 0 && (
               <div className="p-5 flex items-center gap-[37px] border border-[#e4e7e9] h-fit ">
                 <button
                   type="button"
@@ -236,8 +251,13 @@ let handleVariant = (item) => {
                   +
                 </button>
               </div>
+                
+              )}
 
               {/* add to cart */}
+                {variant && variant.stock > 0 ? (
+               
+
               <button
                 type="button"
                 className="bg-[#FA8232] py-2 flex gap-4 items-center  px-20 font-Public_Sans font-bold text-base leading-14 text-white uppercase cursor-pointer      "
@@ -245,6 +265,17 @@ let handleVariant = (item) => {
                 <span>add to cart</span>
                 <Cart className={`w-5 h-5`} />
               </button>
+                )
+              :
+              <button
+                type="button"
+                className="bg-[#FA8232] py-2 flex gap-4 items-center  px-20 font-Public_Sans font-bold text-base leading-14 text-white uppercase disabled:bg-red-500   cursor-none    "
+                disabled  
+              >
+                <span>add to cart</span>    
+                <Cart className={`w-5 h-5`} />
+              </button>
+              }
 
               <button
                 type="button"
