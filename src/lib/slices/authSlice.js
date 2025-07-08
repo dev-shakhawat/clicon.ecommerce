@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     activeModal: "login",
+    userInfo: null,
 }
 
 export const authSlice = createSlice({
@@ -11,8 +12,12 @@ export const authSlice = createSlice({
     ActiveModalSet: (state , action) => {
       state.activeModal = action.payload
     },
+     
+    userInfoSet: (state, action) => {
+      state.userInfo = action.payload
+    }
   },
 })
 
-export const { ActiveModalSet } = authSlice.actions
+export const { ActiveModalSet , userInfoSet } = authSlice.actions
 export default authSlice.reducer
