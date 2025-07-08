@@ -55,3 +55,51 @@
   .filterHead{
     @apply font-Public_Sans font-medium text-base leading-6 text-[#191C1F] uppercase
   }
+
+
+  /* price selector */
+
+/* price chooser */ 
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  pointer-events: auto;
+  border: 2px solid #FA8232;
+
+}
+
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px solid #FA8232;
+}
+
+/* product details */
+.thumbnailimage .slick-active.slick-current{
+  border: 1px solid #FF624C;
+  overflow: hidden; 
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
