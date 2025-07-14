@@ -10,9 +10,12 @@ import { useEffect, useRef, useState } from "react";
 import Auth from "../../customeUI/account/Auth";
 
 import Link from "next/link";
+import { useSelector } from "react-redux";
 import CartModal from "../../customeUI/cart/CartModal";
 
 export default function HeaderMiddle() {
+
+  const user = useSelector((state) => state.auth.userInfo);
   const [isAuth, setIsAuth] = useState(false);
   const accountRef = useRef(null);
   const [isCart, setIsCart] = useState(false);
@@ -32,6 +35,8 @@ export default function HeaderMiddle() {
       document.removeEventListener("mousedown", handleClick);
     };
   });
+
+
 
   return (
     <div className="border-t border-[#3f7ca3] py-5  ">
@@ -80,8 +85,16 @@ export default function HeaderMiddle() {
                 <Favorite className={`w-8 h-8`} />
               </button>
             </div>
-
+    {user ? (
+      <div className="relative">
+        <button type="button" className="cursor-pointer text-white">
+         <h2>{user.username}</h2>
+        </button>
+      </div>
+    )
+    :
             <div ref={accountRef} className="relative">
+              
               <button
                 onClick={() => setIsAuth((prev) => !prev)}
                 type="button"
@@ -93,6 +106,8 @@ export default function HeaderMiddle() {
               {/* auth */}
               {isAuth && <Auth />}
             </div>
+
+  }
           </div>
         </div>
       </Container>

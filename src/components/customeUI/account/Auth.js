@@ -1,10 +1,9 @@
 "use client"
 
-import React from 'react'
+import { useSelector } from 'react-redux'
+import ForgetPass from './ForgetPass'
 import Login from './Login'
 import Registration from './Registration'
-import ForgetPass from './ForgetPass'
-import { useSelector } from 'react-redux'
 
 export default function Auth() {
 
