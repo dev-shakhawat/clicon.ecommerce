@@ -33,7 +33,6 @@ export default function Login() {
 
       if (res.data.success == true) {
         dispatch(userInfoSet(res.data.data));
-        localStorage.setItem("userInfo", JSON.stringify(res.data.data));
         toast.success("Login Successfully");
       }
       // optionally close modal or redirect
