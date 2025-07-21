@@ -13,7 +13,7 @@ const Authcheck = ({ children }) => {
       })
       .then((res) => {
         dispatch(userInfoSet(res.data.data));
-        console.log(res);
+
       })
       .catch((err) => {
         dispatch(userInfoSet(null));

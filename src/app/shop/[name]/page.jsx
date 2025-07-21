@@ -6,6 +6,7 @@ import Star from "@/icons/Star";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
@@ -18,6 +19,10 @@ const page = () => {
   let sliderRef2 = useRef(null);
 
   const [product, setProduct] = useState({});
+
+  const user = useSelector((state) => state.auth.userInfo);
+
+  console.log(user)
 
   useEffect(() => {
     setNav1(sliderRef1);
@@ -62,7 +67,22 @@ const page = () => {
     setVariant(item);
   };
 
-  console.log("variant", variant);
+  
+
+  const handleAddToCart = () => {
+
+     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/add-to-cart`, {
+      product: product._id,
+      quantity,
+      variant: variant? variant._id : null,
+      price: product.price,
+      user: user._id
+    }).then((res) => {
+      alert("add to cart successfully")
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   return (
     <div>
@@ -199,7 +219,7 @@ const page = () => {
                 </div>
               )}
               {
-                product?.variant?.length > 0 && (
+                product?.variant?.length > 0 ? (
                   <>
                     <p className="font-Public_Sans font-normal text-sm text-[#191C1F] mb-2    ">
                       Size
@@ -221,6 +241,14 @@ const page = () => {
                     </select>
                   </>
                 )
+                :
+                 <button onClick={handleAddToCart}
+                type="button"
+                className="bg-[#FA8232] py-2 flex gap-4 items-center  px-20 font-Public_Sans font-bold text-base leading-14 text-white uppercase cursor-pointer      "
+              >
+                <span>add to cart</span>
+                <Cart className={`w-5 h-5`} />
+              </button>
 
                 // <ProductInfoSelection title={`Size`} list={[product.variant.size]}/>
               }
@@ -255,26 +283,19 @@ const page = () => {
               )}
 
               {/* add to cart */}
-                {variant && variant.stock > 0 ? (
+                {
+                variant && variant.stock > 0 && (
                
 
               <button
                 type="button"
                 className="bg-[#FA8232] py-2 flex gap-4 items-center  px-20 font-Public_Sans font-bold text-base leading-14 text-white uppercase cursor-pointer      "
               >
-                <span>add to cart</span>
+                <span>Add to cart</span>
                 <Cart className={`w-5 h-5`} />
               </button>
                 )
-              :
-              <button
-                type="button"
-                className="bg-[#FA8232] py-2 flex gap-4 items-center  px-20 font-Public_Sans font-bold text-base leading-14 text-white uppercase disabled:bg-red-500   cursor-none    "
-                disabled  
-              >
-                <span>add to cart</span>    
-                <Cart className={`w-5 h-5`} />
-              </button>
+           
               }
 
               <button

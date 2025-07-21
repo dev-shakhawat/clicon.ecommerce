@@ -37,6 +37,7 @@ export default function HeaderMiddle() {
   const accountRef = useRef(null);
   const [isCart, setIsCart] = useState(false);
   const cartRef = useRef(null);
+  const [searchProduct, setSearchProduct] = useState([]);
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -56,9 +57,9 @@ export default function HeaderMiddle() {
   // Logout handler — customize this with your redux or auth logic
   const handleLogout = () => {
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/logout`,{}, { withCredentials: true }).then((res) => {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/logout`, {}, { withCredentials: true }).then((res) => {
         console.log(res);
-Cookies.remove('mern2401');
+        Cookies.remove('mern2401');
       })
       .then(() => {
         dispatch(userInfoSet(null));
@@ -70,6 +71,24 @@ Cookies.remove('mern2401');
 
 
   };
+
+  //search products 
+
+
+  let handleSearchPorducts = (e) => {
+    e.preventDefault();
+
+
+    if(e.target.value === '') return setSearchProduct([]); 
+    let search =e.target.value
+
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/product/search-product?search=${search}`).then((res) => {
+     setSearchProduct(res.data.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
 
   // User avatar dropdown component inside HeaderMiddle for simplicity
   const UserAvatarDropdown = ({ user, handleLogout }) => {
@@ -138,12 +157,30 @@ Cookies.remove('mern2401');
 
           {/* search Box */}
           <div className="relative bg-[#FFFFFF] lg:min-w-[646px] h-[48px] rounded-[2px]">
-            <input
+            <input onChange={handleSearchPorducts}
               type="search"
               placeholder="Search for anything..."
               className="h-full w-full pl-5 pr-12 outline-0 font-Public_Sans font-normal text-sm leading-5 text-[#77878F]"
             />
-            <Search className="absolute top-1/2 -translate-y-1/2 right-5" />
+
+            <Search className="absolute !z-50 top-1/2 -translate-y-1/2 right-5" />
+           
+
+            {searchProduct.length > 0 && 
+            
+            <div className="absolute top-[105%] z-50 left-0 w-full bg-white py-3 px-4  shadow-lg">
+              {searchProduct.map((product) => (
+
+                <Link key={product._id} href={`/shop/${product.slug}`} className="flex items-center gap-5 mt-2">
+                  <img className="w-[50px] h-[50px] " src={product.thumbnail} alt={product.title} />
+                  <h3>{product.title}</h3>
+                </Link>
+              ))}
+            </div>
+            
+            }
+         
+
           </div>
 
           {/* ecommerce options */}

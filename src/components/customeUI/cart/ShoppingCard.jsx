@@ -1,11 +1,10 @@
 "use client"
 
-import React, { useState } from 'react'
+import { useState } from 'react';
 
 // icons
+import { FiMinus, FiPlus } from "react-icons/fi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { FiPlus } from "react-icons/fi";
-import { FiMinus } from "react-icons/fi";
 
 export default function ShoppingCard({img, descountPrice, price, title}) {
 
@@ -30,7 +29,7 @@ export default function ShoppingCard({img, descountPrice, price, title}) {
 
         {/* product image */}
         {img
-        ? <img src={img} alt="" />
+        ? <img className='w-[72px] h-[72px]' src={img} alt="" />
         : <div className='w-[72px] h-[72px] bg-[#e4e7e9]'></div>       } 
 
 
