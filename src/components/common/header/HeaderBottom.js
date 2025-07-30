@@ -17,67 +17,8 @@ import CategoryListForHeader from "../../customeUI/category/CategoryListForHeade
 
 export default function HeaderBottom() {
   const [categoryList, setCategoryList]=useState([])
-  // const categoryList = [
-  //   {
-  //     id: 1,
-  //     name: "Computer & Laptop",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Computer Accessories",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "SmartPhone",
-  //     subCategory: [
-  //       {
-  //         id: 31,
-  //         name: "All",
-  //       },
-  //       {
-  //         id: 32,
-  //         name: "iPhone",
-  //       },
-  //       {
-  //         id: 33,
-  //         name: "Sangung",
-  //       },
-  //       {
-  //         id: 34,
-  //         name: "Realme",
-  //       },
-  //       {
-  //         id: 35,
-  //         name: "Xiaomi",
-  //       },
-  //       {
-  //         id: 36,
-  //         name: "Oppo",
-  //       },
-  //       {
-  //         id: 37,
-  //         name: "Vivo",
-  //       },
-  //       {
-  //         id: 38,
-  //         name: "OnePlus",
-  //       },
-  //       {
-  //         id: 39,
-  //         name: "Huawei",
-  //       },
-  //       {
-  //         id: 40,
-  //         name: "Infinix",
-  //       },
-  //       {
-  //         id: 41,
-  //         name: "Techno",
-  //       },
-  //     ],
-  //   },
-  
-  // ];
+
+
   
   // Fetch all category list from API
   function getAllCategoryList() {

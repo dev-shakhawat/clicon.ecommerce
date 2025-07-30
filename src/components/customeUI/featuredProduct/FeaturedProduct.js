@@ -9,24 +9,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const FeaturedProducts = () => {
-  // const tab_items = [
-  //   {
-  //     id: 1,
-  //     name: "All Product",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Smart Phone",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Laptop",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Headphone",
-  //   },
-  // ];
 
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [categoryList, setCategoryList] = useState([]);

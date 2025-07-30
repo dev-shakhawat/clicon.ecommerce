@@ -14,7 +14,7 @@ export default async function Banner() {
  
   return (
   <Container>
-    {data.data.map((item, index) => (
+    {data?.data?.map((item, index) => (
       <Link href={`/${item.href}`}><Image src={item.image} alt="banner" width={1920} height={400} className={`w-full mt-6  `} /></Link>
 
     ))}

@@ -1,25 +1,13 @@
 "use client"
-
-import { useState } from 'react';
+ 
 
 // icons
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-export default function ShoppingCard({img, descountPrice, price, title}) {
+export default function ShoppingCard({img, descountPrice, price, title , quantity , handleMinus , handlePlus}) {
 
-    const [quantity, setQuantity] = useState(1)
-    
-    const handlePlus = ()=>{
-        setQuantity(prev => prev + 1)
-    }
 
-    const handleMinus = ()=>{
-        if(quantity === 1){
-            return
-        }
-        setQuantity(prev => prev - 1)
-    }
 
   return (
     <div className='flex items-center gap-6'>

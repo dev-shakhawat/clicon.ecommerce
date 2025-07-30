@@ -10,20 +10,56 @@ import { useSelector } from "react-redux";
 
 export default  function page() {
       const user = useSelector((state) => state.auth.userInfo);
-    const [cartlist , setCartList] = useState([])
-
-      console.log(user?._id)
+      const [cartlist , setCartList] = useState([])
+      const [quantity, setQuantity] = useState(1)
+      const [productID, setProductID] = useState(null)
+          
+       const handlePlus = (ID , amount)=>{
+           setProductID(ID)
+           setQuantity(amount + 1)
+      }
+      
+      const handleMinus = (ID , amount)=>{
+              if(amount === 1){
+              return
+          }
+          setProductID(ID)
+          setQuantity(amount - 1)
+      }
+      
+ 
       useEffect(() => {
           axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/get-cartbyuserid/${user?._id}`).then((res) => {
               setCartList(res.data.data)
+              console.log(res.data.data); 
           }).catch((err) => {
               console.log(err)
           })
-      },[user?._id])
+      },[user?._id , quantity])
+
+
+    useEffect( () => {
+
+      async function updateQuantity() {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/update-quantity/${productID}` , {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ quantity }), 
+        });
+  
+        const data = await response.json();
+        console.log(data);
+        
+      }
+  
+      updateQuantity();
+      
+    },[quantity])
 
 
 
-      console.log(cartlist)
   return (
     <Container>
       <div className="flex pt-[72px] gap-6 mb-20  ">
@@ -46,12 +82,15 @@ export default  function page() {
             {/* card item */}
             {cartlist.map((item) => (
                 <ShoppingCard
+                  key={item._id}
                   img={item?.product?.thumbnail}
                   descountPrice={99}
                   price={item?.price}
                   title={item?.product.title}
+                  quantity={item?.quantity}
+                  handlePlus={()=> handlePlus(item._id , item?.quantity)}
+                  handleMinus={()=> handleMinus(item._id , item?.quantity)}
                 />
-
             ))}
         
           </div>
