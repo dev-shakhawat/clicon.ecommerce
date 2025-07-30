@@ -71,6 +71,8 @@ const page = () => {
 
   const handleAddToCart = () => {
 
+
+    console.log("add to cart")
      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/add-to-cart`, {
       product: product._id,
       quantity,
@@ -287,7 +289,7 @@ const page = () => {
                 variant && variant.stock > 0 && (
                
 
-              <button
+              <button onClick={handleAddToCart}
                 type="button"
                 className="bg-[#FA8232] py-2 flex gap-4 items-center  px-20 font-Public_Sans font-bold text-base leading-14 text-white uppercase cursor-pointer      "
               >

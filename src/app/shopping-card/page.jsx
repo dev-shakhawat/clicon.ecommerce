@@ -1,5 +1,5 @@
- "use client";
- import Container from "@/components/common/Container";
+"use client";
+import Container from "@/components/common/Container";
 import CardTotal from "@/components/customeUI/cart/CardTotal";
 import CuponCard from "@/components/customeUI/cart/CuponCard";
 import ShoppingCard from "@/components/customeUI/cart/ShoppingCard";
@@ -8,57 +8,77 @@ import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
-export default  function page() {
-      const user = useSelector((state) => state.auth.userInfo);
-      const [cartlist , setCartList] = useState([])
-      const [quantity, setQuantity] = useState(1)
-      const [productID, setProductID] = useState(null)
-          
-       const handlePlus = (ID , amount)=>{
-           setProductID(ID)
-           setQuantity(amount + 1)
+export default function page() {
+  const user = useSelector((state) => state.auth.userInfo);
+  const [cartlist, setCartList] = useState([]);
+  const [quantity, setQuantity] = useState(null);
+  const [productID, setProductID] = useState(null);
+
+  const handlePlus = (ID, amount) => {
+    setProductID(ID);
+    setQuantity(amount + 1);
+    updateQuantity(ID, "plus");
+  };
+
+  const handleMinus = (ID, amount) => {
+    if (amount === 1) {
+      return;
+    }
+    setProductID(ID);
+    setQuantity(amount - 1);
+    updateQuantity(ID, "minus");
+  };
+
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/get-cartbyuserid/${user?._id}`
+      )
+      .then((res) => {
+        setCartList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user?._id, quantity]);
+
+  async function updateQuantity(productID, action) {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/update-quantity/${productID}`,
+      {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ quantity, action }),
       }
+    );
+
+    const data = await response.json();
+    console.log(data);
+    if(!data.success) {
+      alert(data.message);
+      return;
+    }else{
+      location.reload();
+    }
+  }
+
+  async function handleRemoveCart(cartId) {
+    axios
+      .delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/delete-remove-form-cart/${cartId}`,
+        { withCredentials: true }
+      )
+      .then((res) => {
+        location.reload();
       
-      const handleMinus = (ID , amount)=>{
-              if(amount === 1){
-              return
-          }
-          setProductID(ID)
-          setQuantity(amount - 1)
-      }
-      
- 
-      useEffect(() => {
-          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/get-cartbyuserid/${user?._id}`).then((res) => {
-              setCartList(res.data.data)
-              console.log(res.data.data); 
-          }).catch((err) => {
-              console.log(err)
-          })
-      },[user?._id , quantity])
-
-
-    useEffect( () => {
-
-      async function updateQuantity() {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/update-quantity/${productID}` , {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ quantity }), 
-        });
-  
-        const data = await response.json();
-        console.log(data);
-        
-      }
-  
-      updateQuantity();
-      
-    },[quantity])
-
-
+      }).catch((err) => {
+        console.log(err);
+        alert(err);
+      });
+  }
 
   return (
     <Container>
@@ -80,19 +100,20 @@ export default  function page() {
           {/* all cards */}
           <div className="p-6 flex flex-col gap-6  ">
             {/* card item */}
-            {cartlist.map((item) => (
-                <ShoppingCard
-                  key={item._id}
-                  img={item?.product?.thumbnail}
-                  descountPrice={99}
-                  price={item?.price}
-                  title={item?.product.title}
-                  quantity={item?.quantity}
-                  handlePlus={()=> handlePlus(item._id , item?.quantity)}
-                  handleMinus={()=> handleMinus(item._id , item?.quantity)}
-                />
+            {cartlist?.map((item) => (
+              <ShoppingCard
+                key={item._id}
+                img={item?.product?.thumbnail}
+                descountPrice={99}
+                price={item?.price}
+                title={item?.product.title}
+                quantity={item?.quantity}
+                setQuantity={setQuantity}
+                handlePlus={() => handlePlus(item._id, item?.quantity)}
+                handleMinus={() => handleMinus(item._id, item?.quantity)}
+                handleRemoveCart={() => handleRemoveCart(item._id)}
+              />
             ))}
-        
           </div>
 
           {/* buttons */}

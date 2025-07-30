@@ -5,15 +5,18 @@
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-export default function ShoppingCard({img, descountPrice, price, title , quantity , handleMinus , handlePlus}) {
+export default function ShoppingCard({img, descountPrice, price, title , quantity , handleMinus , handlePlus, handleRemoveCart , setQuantity}) {
 
 
+
+
+  setQuantity(quantity);
 
   return (
     <div className='flex items-center gap-6'>
         
         {/* close btn */}
-        <button type="button" className=' text-2xl text-[#929FA5] cursor-pointer  '  ><IoIosCloseCircleOutline /></button>
+        <button onClick={handleRemoveCart} type="button" className=' text-2xl text-[#929FA5] cursor-pointer  '  ><IoIosCloseCircleOutline /></button>
 
         {/* product image */}
         {img
