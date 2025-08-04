@@ -13,6 +13,7 @@ export default function page() {
   const [cartlist, setCartList] = useState([]);
   const [quantity, setQuantity] = useState(null);
   const [productID, setProductID] = useState(null);
+  const [cardTotal , setCardTotal] = useState(null)
 
   const handlePlus = (ID, amount) => {
     setProductID(ID);
@@ -40,6 +41,19 @@ export default function page() {
       .catch((err) => {
         console.log(err);
       });
+
+      
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/get-carttotal` , {withCredentials: true}
+      )
+      .then((res) => { 
+        setCardTotal(res.data.data); 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   }, [user?._id, quantity]);
 
   async function updateQuantity(productID, action) {
@@ -79,6 +93,9 @@ export default function page() {
         alert(err);
       });
   }
+
+  console.log(cardTotal);
+  
 
   return (
     <Container>
@@ -138,15 +155,13 @@ export default function page() {
         <div className="flex-1">
           {/* cart total */}
           <CardTotal
-            subtotal={2000}
-            shippingfee={0}
-            discount={0}
-            tax={0}
-            total={2000}
+            subtotal={cardTotal?.subTotal}
+            shippingfee={cardTotal?.shoppingFee}
+            discount={cardTotal?.discount}
+            tax={cardTotal?.tax}
+            total={cardTotal?.grandTotal}
           />
-
-          {/* cupon card */}
-          <CuponCard />
+ 
         </div>
       </div>
     </Container>

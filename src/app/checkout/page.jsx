@@ -2,6 +2,8 @@
 import Container from '@/components/common/Container'
 import InputField from '@/components/customeUI/billingAddress/InputField'
 import Selection from '@/components/customeUI/billingAddress/Selection'
+import CardTotal from '@/components/customeUI/cart/CardTotal'
+import CuponCard from '@/components/customeUI/cart/CuponCard'
 import React from 'react'
 
 export default function page() {
@@ -11,7 +13,7 @@ export default function page() {
   return (
     <Container>
 
-      <div className="flex py-[72px]   ">
+      <div className="flex py-[72px] gap-5   ">
 
         {/* address */}
         <div className="flex-2">
@@ -63,7 +65,10 @@ export default function page() {
         </div>
 
         {/* order summary */}
-        <div className="flex-1"></div>
+        <div className="flex-1">
+          <CardTotal/>
+          <CuponCard/>
+        </div>
       </div>
 
     </Container>
