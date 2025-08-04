@@ -1,8 +1,6 @@
 import Arrow from '@/icons/Arrow'
-import Link from 'next/link'
-import React from 'react'
 
-export default function CardTotal({subtotal , shippingfee , discount , tax , total}) {
+export default function CardTotal({subtotal , shippingfee , discount , tax , total,onClick}) {
   return (
     <div className='border border-[#cdcdcd] rounded-[5px]   '>
         
@@ -41,10 +39,10 @@ export default function CardTotal({subtotal , shippingfee , discount , tax , tot
 
         {/* checkout button */}
         <div className="mx-6 pb-6">
-          <Link href={'/checkout'} className=' w-full bg-[#FA8232] text-white uppercase font-Public_Sans font-bold text-sm leading-[48px] flex items-center justify-center gap-2 cursor-pointer   ' type="button">
-            <span>checkout now</span>
+          <button onClick={onClick} className=' w-full bg-[#FA8232] text-white uppercase font-Public_Sans font-bold text-sm leading-[48px] flex items-center justify-center gap-2 cursor-pointer   ' type="button">
+            <span>Order now</span>
             <Arrow className={`w-[20px] h-[20px]  `}  />
-          </Link>
+          </button>
 
         </div>
 

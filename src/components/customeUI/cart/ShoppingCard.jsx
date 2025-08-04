@@ -10,6 +10,7 @@ export default function ShoppingCard({img, descountPrice, price, title , quantit
 
 
 
+
   setQuantity(quantity);
 
   return (
