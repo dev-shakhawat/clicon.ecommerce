@@ -1,6 +1,7 @@
 import React from 'react'
 import CartItem from './CartItem'
 import Arrow from '@/icons/Arrow'
+import Link from 'next/link'
 
 export default function CartModal() {
   return (
@@ -34,9 +35,9 @@ export default function CartModal() {
         </button>
 
         {/* view cart btn */}
-        <button className=' w-full border border-[#FA8232] text-[#FA8232] uppercase font-Public_Sans font-bold text-sm leading-[48px] flex items-center justify-center gap-2  mt-3 cursor-pointer ' type="button">
+        <Link href="/shopping-card" className=' w-full border border-[#FA8232] text-[#FA8232] uppercase font-Public_Sans font-bold text-sm leading-[48px] flex items-center justify-center gap-2  mt-3 cursor-pointer ' type="button">
           <span>view cart</span>
-        </button>
+        </Link>
       </div>
 
 

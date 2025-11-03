@@ -51,7 +51,7 @@ export default function AllCategory() {
             {categoryList.length > 0 && <CarouselPrevious />}
             <CarouselContent className={`-ml-2`}>
               {categoryList?.map((item, index) => (
-                <CarouselItem className="basis-1/5">
+                <CarouselItem key={item.slug} className="basis-1/5">
                   <CategoryCart 
                     category={item.name}
                     slug={item.slug}

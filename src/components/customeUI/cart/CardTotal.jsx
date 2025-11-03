@@ -1,4 +1,5 @@
 import Arrow from '@/icons/Arrow'
+import Link from 'next/link'
 
 export default function CardTotal({subtotal , shippingfee , discount , tax , total,onClick}) {
   return (
@@ -39,10 +40,10 @@ export default function CardTotal({subtotal , shippingfee , discount , tax , tot
 
         {/* checkout button */}
         <div className="mx-6 pb-6">
-          <button onClick={onClick} className=' w-full bg-[#FA8232] text-white uppercase font-Public_Sans font-bold text-sm leading-[48px] flex items-center justify-center gap-2 cursor-pointer   ' type="button">
+          <Link href={"/checkout"} onClick={onClick} className=' w-full bg-[#FA8232] text-white uppercase font-Public_Sans font-bold text-sm leading-[48px] flex items-center justify-center gap-2 cursor-pointer   ' type="button">
             <span>Order now</span>
             <Arrow className={`w-[20px] h-[20px]  `}  />
-          </button>
+          </Link>
 
         </div>
 

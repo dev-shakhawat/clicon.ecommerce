@@ -10,22 +10,17 @@ export default function ShopCategories() {
   const [activeCat, setActiveCat] = useState("");
   const dispatch = useDispatch();
 
-  // fetch categories
-  function getAllCategoryList() {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/category/getcategorys`)
-      .then((res) => {
-        setCategories(res.data.data);
-      });
-  }
   useEffect(() => {
-    getAllCategoryList();
+    axios
+      .get(`https://dummyjson.com/products/categories`)
+      .then((res) => {
+        setCategories(res.data);
+      });
   }, []);
 
   useEffect(() => {
     dispatch(currentCat(activeCat));
   }, [activeCat]);
-
 
   return (
     <div className="flex flex-col gap-3 mt-4 max-h-[372px] overflow-scroll -scroll-m-0  ">
@@ -33,19 +28,20 @@ export default function ShopCategories() {
         categories.map((cat) => (
           <label
             key={cat.name}
-            htmlFor={cat.name}
+            htmlFor={cat.slug}
             className="block cursor-pointer "
+            onChange={() => setActiveCat(cat.slug)}
           >
             <input
-              key={cat.name}
+              key={cat.slug}
               type="radio"
               name="categories"
-              id={cat.name}
-              value={cat._id}
-              checked={activeCat === cat._id}
-              onChange={() => setActiveCat(cat._id)}
+              id={cat.slug}
+              value={cat.name}
+              checked={activeCat === cat.slug}
+              
               className={` relative after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-0  after:w-5 after:h-5  after:rounded-full after:border-2    before:content-[''] before:absolute before:top-1/2 before:-translate-y-1/2 before:left-1.5 before:w-2 before:h-2 before:bg-[#ffffff] before:rounded-full before:z-10 ${
-                activeCat === cat._id
+                activeCat === cat.slug
                   ? "after:border-[#FA8232] after:bg-[#FA8232] "
                   : "after:border-[#C9CFD2] after:bg-[white]   "
               }   `}

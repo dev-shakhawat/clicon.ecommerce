@@ -68,6 +68,7 @@ export default function HeaderBottom() {
             {isCategoryOpen && (
               <CategoryListForHeader
                 categoryList={categoryList}
+                setIsCategoryOpen={setIsCategoryOpen}
                 className={`top-15 left-0 z-10 `}
               />
             )}

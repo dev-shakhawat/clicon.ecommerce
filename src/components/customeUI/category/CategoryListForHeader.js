@@ -1,6 +1,20 @@
+"use client";
 import Link from "next/link"; 
 
-export default function CategoryListForHeader({ className, categoryList }) { 
+import { currentCat } from "@/lib/slices/productSlice";
+import { useDispatch } from "react-redux"; 
+import { useRouter } from "next/navigation";
+
+
+export default function CategoryListForHeader({ className, categoryList , setIsCategoryOpen }) { 
+
+  const dispatch = useDispatch();
+  const navigate = useRouter();
+  const handleNavigatetoShop = (cat)=> {
+    dispatch(currentCat(cat));
+    navigate.push(`/shop`);
+    setIsCategoryOpen(false);
+  }
 
   return (
     <div 
@@ -10,6 +24,7 @@ export default function CategoryListForHeader({ className, categoryList }) {
       <ul>
         {categoryList?.map((item, index) => (
           <li 
+            onClick={()=> handleNavigatetoShop(item) }
             className={` cursor-pointer py-2 px-4 font-public_sans font-normal text-sm leading-5 text-[#77878F] hover:bg-[#f2f4f5] hover:text-[#191C1F]    `}
             key={index}
           >

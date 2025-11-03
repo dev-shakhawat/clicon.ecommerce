@@ -61,13 +61,7 @@ export default function page() {
               <Image src={`/images/categoryad.png`} alt="banner" width={312} height={300} className={`w-full mt-6 `} />
               </Link>
             </div>
-
-             
-
-
-
-
-
+ 
           </div>
 
 
@@ -97,7 +91,7 @@ export default function page() {
               </div>
             </div>
 
-            <Paginate itemsPerPage={24}/>
+            <Paginate />
           </div>
         </div>
       </Container>
