@@ -7,8 +7,7 @@ import { useSelector } from "react-redux";
 export default function page() {
 
     const user = useSelector((state) => state.auth.userInfo.user);
-
-    console.log(user)
+ 
 
     const [otp, setOtp] = useState({
       otp1: "",
