@@ -11,8 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
 const page = () => {
-  const { name } = useParams();
-
+  const { name } = useParams(); 
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   let sliderRef1 = useRef(null);
@@ -21,16 +20,14 @@ const page = () => {
   const [product, setProduct] = useState({});
 
   const user = useSelector((state) => state.auth.userInfo);
-
-  console.log(user)
+ 
 
   useEffect(() => {
     setNav1(sliderRef1);
     setNav2(sliderRef2);
   }, []);
 
-  // const product = useSelector((state) => state.product.currentProduct)
-
+ 
   // product quantity count
   const [quantity, setQuantity] = useState(1);
   const [variant, setVariant] = useState(null);
@@ -47,44 +44,18 @@ const page = () => {
   };
 
   useEffect(() => {
-    function getSingleProduct() {
-      axios
-        .get(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/product/single-product/${name}`
-        )
-        .then((res) => {
-          setProduct(res.data.data);
-          if (res.data.data.variant.length > 0) {
-            setVariant(res.data.data.variant[0]);
-          }
-        });
-    }
-
-    getSingleProduct();
+    axios
+      .get(`https://dummyjson.com/products/${name}`)
+      .then((res) => { 
+        setProduct(res.data);
+        
+      })
+      .catch(console.error);
   }, []);
 
-  let handleVariant = (item) => {
-    setVariant(item);
-  };
-
-  
-
-  const handleAddToCart = () => {
-
-
-    console.log("add to cart")
-     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/cart/add-to-cart`, {
-      product: product._id,
-      quantity,
-      variant: variant? variant._id : null,
-      price: product.price,
-      user: user._id
-    }).then((res) => {
-      alert("add to cart successfully")
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
+ 
+ 
+ 
 
   return (
     <div>
@@ -244,7 +215,7 @@ const page = () => {
                   </>
                 )
                 :
-                 <button onClick={handleAddToCart}
+              <button  
                 type="button"
                 className="bg-[#FA8232] py-2 flex gap-4 items-center  px-20 font-Public_Sans font-bold text-base leading-14 text-white uppercase cursor-pointer      "
               >

@@ -2,8 +2,12 @@ import Cart from "@/icons/Cart";
 import Eye from "@/icons/Eye";
 import Favorite from "@/icons/Favorite";
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 const Product = ({ product, id , onClick}) => {
+
+   
+  
   
   return (
     <div
@@ -23,20 +27,20 @@ const Product = ({ product, id , onClick}) => {
         <div className="absolute top-0 left-0 w-full h-full bg-[#000000]/30 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out  flex justify-center items-center">
           <div className=" flex gap-2 w-full  justify-center ">
             
-            {/* eye */}
+            {/* love */}
             <div className="hover:bg-[#FA8232] bg-white w-[48px] h-[48px]  rounded-full hover:text-white grid place-items-center cursor-pointer ">
               <Favorite className="w-6 h-6  rounded-full " />
             </div>
             
-            {/* eye */}
-            <div className="hover:bg-[#FA8232] bg-white w-[48px] h-[48px]  rounded-full hover:text-white grid place-items-center cursor-pointer ">
+            {/* cart */}
+            <Link href={`/shopping-card`} className="hover:bg-[#FA8232] bg-white w-[48px] h-[48px]  rounded-full hover:text-white grid place-items-center cursor-pointer ">
               <Cart className="w-6 h-6  rounded-full " />
-            </div>
+            </Link>
             
             {/* eye */}
-            <div className="hover:bg-[#FA8232] bg-white w-[48px] h-[48px]  rounded-full hover:text-white grid place-items-center cursor-pointer ">
+            <Link href={`/shop/${product?.id}`} className="hover:bg-[#FA8232] bg-white w-[48px] h-[48px]  rounded-full hover:text-white grid place-items-center cursor-pointer ">
               <Eye className="w-6 h-6  rounded-full " />
-            </div>
+            </Link>
           </div>
         </div>
       </div>
