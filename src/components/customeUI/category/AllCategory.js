@@ -22,21 +22,21 @@ export default function AllCategory() {
   const router = useRouter();
 
   const [categoryList, setCategoryList] = useState([]);
-  function getAllCategoryList() {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/category/getcategorys`)
-      .then((res) => {
-        setCategoryList(res.data.data);
-      });
-  }
+ 
   useEffect(() => {
-    getAllCategoryList();
+      axios
+      .get(`https://dummyjson.com/products/categories`)
+      .then((res) => { 
+        setCategoryList(res.data);
+      });
   }, []);
 
   const handleCategoryView = (category, slug) => {
     dispatch(currentCat(category));
     router.push(`/shop`);
   };
+
+ 
 
   return (
     <div className="py-10">
@@ -48,12 +48,11 @@ export default function AllCategory() {
 
         <div className=" w-[1320px] mt-5">
           <Carousel>
-            {categoryList.length > 5 && <CarouselPrevious />}
+            {categoryList.length > 0 && <CarouselPrevious />}
             <CarouselContent className={`-ml-2`}>
               {categoryList?.map((item, index) => (
                 <CarouselItem className="basis-1/5">
-                  <CategoryCart
-                    thumbnail={item.image}
+                  <CategoryCart 
                     category={item.name}
                     slug={item.slug}
                     onClick={() => handleCategoryView(item.name, item.slug)}
@@ -61,7 +60,7 @@ export default function AllCategory() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            {categoryList.length > 5 && <CarouselNext />}
+            {categoryList.length > 0 && <CarouselNext />}
           </Carousel>
         </div>
       </Container>

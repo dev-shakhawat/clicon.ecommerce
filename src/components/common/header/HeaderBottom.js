@@ -18,17 +18,15 @@ import CategoryListForHeader from "../../customeUI/category/CategoryListForHeade
 export default function HeaderBottom() {
   const [categoryList, setCategoryList]=useState([])
 
+  useEffect(() => {
+    axios
+      .get(`https://dummyjson.com/products/category-list`)
+      .then((res) => { 
+        setCategoryList(res.data);
+      });
+  }, []);
 
-  
-  // Fetch all category list from API
-  function getAllCategoryList() {
-   axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/category/getcategorys`).then((res)=>{
-   setCategoryList(res.data.data);
-   })
-  }
-  useEffect(()=>{
-    getAllCategoryList()
-  },[])
+ 
 
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const categoryRef = useRef(null);
@@ -42,10 +40,7 @@ export default function HeaderBottom() {
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
-    };
-
-  
-
+    }; 
   }, []);
 
   return (
